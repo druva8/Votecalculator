@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>votecalculator</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .calculator-container {
+        max-width: 450px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow: 0 30px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .calculator-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      input[type="number"],
+      input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        background: #f4f7f8;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      input[type="number"]:focus,
+      input[type="text"]:focus {
+        outline: none;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+        transform: scale(1.02);
+      }
+
+      input[type="number"]::placeholder,
+      input[type="text"]::placeholder {
+        color: #999;
+        font-style: italic;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(45deg, #ff6f61, #de4d40);
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background: linear-gradient(45deg, #de4d40, #ff6f61);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(45deg, #28a745, #34c759);
+        border-radius: 10px;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .button:hover {
+        background: linear-gradient(45deg, #34c759, #28a745);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transform: translateY(-3px);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="readage">
+      {% csrf_token %}
+      <div class="calculator-container">
+        <h1>Vote Eligibility Checker</h1>
+        <table>
+          <tr>
+            <td>
+              <input
+                type="number"
+                placeholder="Enter a Person's Age"
+                name="txtage"
+                value="{{ age }}"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Check Vote Eligibility" /></td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="text"
+                placeholder="Get the Result"
+                value="{{ res }}"
+                readonly
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/" class="button">Calculator</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </body>
+</html>

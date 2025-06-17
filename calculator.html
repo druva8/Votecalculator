@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>calculator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .calculator-container {
+        max-width: 450px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .calculator-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      input[type="number"],
+      input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        background: #f4f7f8;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      input[type="number"]:focus,
+      input[type="text"]:focus {
+        outline: none;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+        transform: scale(1.02);
+      }
+
+      input[type="number"]::placeholder,
+      input[type="text"]::placeholder {
+        color: #999;
+        font-style: italic;
+      }
+
+      input[type="submit"],
+      button {
+        width: 22%;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        margin: 5px 1%;
+        cursor: pointer;
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      input[type="submit"]:nth-child(1) {
+        background: linear-gradient(45deg, #007bff, #00c4ff);
+      }
+
+      input[type="submit"]:nth-child(2) {
+        background: linear-gradient(45deg, #ff5733, #ff8d1a);
+      }
+
+      input[type="submit"]:nth-child(3) {
+        background: linear-gradient(45deg, #28a745, #34c759);
+      }
+
+      input[type="submit"]:nth-child(4) {
+        background: linear-gradient(45deg, #dc3545, #ff6f61);
+      }
+
+      input[type="submit"]:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .button {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(45deg, #6a11cb, #2575fc);
+        border-radius: 10px;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .button:hover {
+        background: linear-gradient(45deg, #2575fc, #6a11cb);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transform: translateY(-3px);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="read">
+      {% csrf_token %}
+      <div class="calculator-container">
+        <h1>Simple Calculator</h1>
+        <table>
+          <tr>
+            <td>
+              <input
+                type="number"
+                placeholder="Enter a Number"
+                name="txtno1"
+                value="{{ n1 }}"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="number"
+                placeholder="Enter a Number"
+                name="txtno2"
+                value="{{ n2 }}"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" value="Add" name="operation" />
+              <input type="submit" value="Sub" name="operation" />
+              <input type="submit" value="Mul" name="operation" />
+              <input type="submit" value="Div" name="operation" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input
+                type="text"
+                placeholder="Get the Result"
+                value="{{ res }}"
+                readonly
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="/vote/" class="button">Vote Validator</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </body>
+</html>
